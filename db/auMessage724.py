@@ -3,8 +3,9 @@ from datetime import datetime
 from mongoengine import *
 from .init_database import r_auMessage724
 
+
 class AuMessage724(Document):
-    LastHitTime = StringField()
+    LastHitTime = DateTimeField()
     ArticleID = IntField()
     title = StringField()
     isArticle = IntField(default=0)
@@ -12,6 +13,8 @@ class AuMessage724(Document):
     source = StringField(default='')
     pushTime = StringField(default='')
     isPushed = StringField(default='')
+    createdAt = DateTimeField()
+    updatedAt = DateTimeField()
 
     meta = {
         'collection': 'auMessage724',

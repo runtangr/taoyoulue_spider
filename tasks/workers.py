@@ -22,8 +22,8 @@ app.conf.update(
 
     CELERYBEAT_SCHEDULE={
         'silver_news_task': {
-            'task': 'tasks.silver_news.save_news',
-            'schedule': timedelta(seconds=20),
+            'task': 'tasks.silver_news.execute_silver_news',
+            'schedule': timedelta(minutes=2),
             'options': {'queue': 'silver_news', 'routing_key': 'for_silver_news'}
         }
     },

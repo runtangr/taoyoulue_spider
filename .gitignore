@@ -45,3 +45,4 @@ livestatus.log
 venv
 .idea/
 celerybeat-schedule
+/page_parse/qiniu.py

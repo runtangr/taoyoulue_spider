@@ -1,23 +1,43 @@
 from .workers import app
-from config.conf import HUA_TONG_URL, MAX_SEARCH_PAGE_NUM, MAX_SEARCH_PAGE
-from page_get.silver import news_list
 from db.auMessage724 import AuMessage724
-import json
+from page_parse.silver.news_list import parse_news_list
+from page_parse.silver.news_content import parse_news_content
+import datetime
 
 
 @app.task(ignore_result=True)
-def save_news():
-    for page in xrange(1, MAX_SEARCH_PAGE):
+def execute_silver_news():
+    for au_message724_field in parse_news_list():
+        app.send_task('tasks.silver_news.save_silver_news_list',
+                      args=(au_message724_field,),
+                      queue='silver_news',
+                      routing_key='for_silver_news')
 
-        res_dict = news_list.get_news_list(page, MAX_SEARCH_PAGE_NUM)
 
-        if res_dict['Status'] == 200:
-            au_message724_field = dict()
-            for data in res_dict['Data']:
-                au_message724_field['LastHitTime'] = data['publishtime']
-                au_message724_field['ArticleID'] = data['id']
-                au_message724_field['title'] = data['title']
+@app.task(ignore_result=True)
+def save_silver_news_list(au_message724_field):
+    au_message724_field['LastHitTime'] = datetime.datetime.strptime(
+        au_message724_field['LastHitTime'], "%Y-%m-%dT%H:%M:%S")
 
-                AuMessage724.add(au_message724_field)
-        else:
-            raise ValueError
+    au_message724_field['createdAt'] = datetime.datetime.strptime(
+        au_message724_field['createdAt'], "%Y-%m-%dT%H:%M:%S.%f")
+
+    au_message724_field['updatedAt'] = datetime.datetime.strptime(
+        au_message724_field['updatedAt'], "%Y-%m-%dT%H:%M:%S.%f")
+
+    AuMessage724.add(au_message724_field)
+
+    app.send_task('tasks.silver_news.save_silver_new_content',
+                  args=(au_message724_field['ArticleID'],),
+                  queue='silver_news',
+                  routing_key='for_silver_news')
+
+
+@app.task(ignore_result=True)
+def save_silver_new_content(article_id):
+    res_div = parse_news_content(article_id)
+
+    print("article_id:", article_id)
+    print("res_div:", res_div)
+
+    AuMessage724.objects(ArticleID=article_id).update(ArticleContent=res_div)
