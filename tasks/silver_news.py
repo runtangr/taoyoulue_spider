@@ -1,7 +1,7 @@
 from .workers import app
 from db.auMessage724 import AuMessage724
-from page_parse.silver.news_list import parse_news_list
-from page_parse.silver.news_content import parse_news_content
+from page_parse.news_list import parse_news_list
+from page_parse.content import parse_content
 import datetime
 
 
@@ -16,15 +16,7 @@ def execute_silver_news():
 
 @app.task(ignore_result=True)
 def save_silver_news_list(au_message724_field):
-    au_message724_field['LastHitTime'] = datetime.datetime.strptime(
-        au_message724_field['LastHitTime'], "%Y-%m-%dT%H:%M:%S")
-
-    au_message724_field['createdAt'] = datetime.datetime.strptime(
-        au_message724_field['createdAt'], "%Y-%m-%dT%H:%M:%S.%f")
-
-    au_message724_field['updatedAt'] = datetime.datetime.strptime(
-        au_message724_field['updatedAt'], "%Y-%m-%dT%H:%M:%S.%f")
-
+    print(type(au_message724_field))
     AuMessage724.add(au_message724_field)
 
     app.send_task('tasks.silver_news.save_silver_new_content',
@@ -35,7 +27,7 @@ def save_silver_news_list(au_message724_field):
 
 @app.task(ignore_result=True)
 def save_silver_new_content(article_id):
-    res_div = parse_news_content(article_id)
+    res_div = parse_content(article_id)
 
     print("article_id:", article_id)
     print("res_div:", res_div)
