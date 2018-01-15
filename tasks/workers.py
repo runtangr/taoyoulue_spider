@@ -10,9 +10,9 @@ from kombu import Exchange, Queue
 platforms.C_FORCE_ROOT = True
 
 tasks = [
- 'tasks.silver_news',
- 'tasks.silver_information',
- 'tasks.silver_trade_information'
+ 'tasks.news',
+ 'tasks.info',
+ 'tasks.trade_info'
 ]
 
 app = Celery('ebaiyin_task', include=tasks, broker=BROKER, backend=BACKEND)
@@ -23,30 +23,31 @@ app.conf.update(
     CELERY_ENABLE_UTC=True,
 
     CELERYBEAT_SCHEDULE={
-        'silver_news_task': {
-            'task': 'tasks.silver_news.execute_silver_news',
+        'news_task': {
+            'task': 'tasks.news.execute_news',
             'schedule': timedelta(minutes=4),
-            'options': {'queue': 'silver_news', 'routing_key': 'for_silver_news'}
+            'options': {'queue': 'news', 'routing_key': 'for_news'}
         },
-        'silver_information_task': {
-            'task': 'tasks.silver_information.execute_silver_information',
+        'info_task': {
+            'task': 'tasks.info.execute_info',
             'schedule': timedelta(minutes=3),
-            'options': {'queue': 'silver_information', 'routing_key': 'for_silver_information'}
+            'options': {'queue': 'info', 'routing_key': 'for_info'}
         },
-        'silver_trade_information_task': {
-            'task': 'tasks.silver_trade_information.execute_silver_trade_information',
+        'trade_info_task': {
+            'task': 'tasks.trade_info.execute_trade_info',
             'schedule': timedelta(minutes=3),
-            'options': {'queue': 'silver_trade_information', 'routing_key': 'for_silver_trade_information'}
+            'options': {'queue': 'trade_info', 'routing_key': 'for_trade_info'}
         }
     },
 
     CELERY_QUEUES=(
-        Queue('silver_news', exchange=Exchange('silver_news', type='direct'), routing_key='for_silver_news'),
+        Queue('news', exchange=Exchange('news', type='direct'),
+              routing_key='for_news'),
 
-        Queue('silver_information', exchange=Exchange('silver_information', type='direct'),
-              routing_key='for_silver_information'),
-        Queue('silver_trade_information', exchange=Exchange('silver_trade_information', type='direct'),
-              routing_key='for_silver_trade_information'),
+        Queue('silver_info', exchange=Exchange('silver_info', type='direct'),
+              routing_key='for_info'),
+        Queue('trade_info', exchange=Exchange('trade_info', type='direct'),
+              routing_key='for_trade_info'),
     )
 )
 

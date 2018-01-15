@@ -1,13 +1,13 @@
-from page_get.trade_information import get_trade_information_list
+from page_get.trade_info import get_trade_info_list
 import time
 from .qiniu_deal import save2qiniu
 import os
 import re
 
 
-def parse_trade_information_list():
-    res_dict = get_trade_information_list(1, 1)
-    # time.sleep(10)
+def parse_trade_info_list():
+    res_dict = get_trade_info_list(1, 1)
+    time.sleep(10)
     if res_dict['Status'] == 200:
         a_information_field = dict()
         for data in res_dict['Data']:
@@ -22,7 +22,7 @@ def parse_trade_information_list():
             a_information_field['tags'] = []
             a_information_field['teacher'] = {}
             a_information_field['nature'] = ''
-            a_information_field['publishTime'] = data['CreateTime']
+            a_information_field['publishTime'] = data['UpdateTime']
             a_information_field['clickNumber'] = 0
             a_information_field['likeNumber'] = 0
             a_information_field['shareNumber'] = 0
@@ -44,4 +44,4 @@ def parse_img_url(image_url):
 
 
 if __name__ == "__main__":
-    parse_trade_information_list()
+    parse_trade_info_list()

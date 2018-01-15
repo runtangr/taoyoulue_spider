@@ -1,13 +1,13 @@
-from page_get.information import get_information_list
+from page_get.info import get_info_list
 import time
 from .qiniu_deal import save2qiniu
 import os
 import re
 
 
-def parse_information_list():
-    res_dict = get_information_list(1, 1)
-    # time.sleep(10)
+def parse_info_list():
+    res_dict = get_info_list(1, 1)
+    time.sleep(10)
     if res_dict['Status'] == 200:
         a_information_field = dict()
         for data in res_dict['Data']:
@@ -44,4 +44,4 @@ def parse_img_url(image_url):
 
 
 if __name__ == "__main__":
-    parse_information_list()
+    parse_info_list()

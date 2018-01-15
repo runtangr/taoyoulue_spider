@@ -1,4 +1,4 @@
-from page_get.news_content import get_news_content
+from page_get.news import get_news_content
 from config.conf import NEWS_CONTENT_URL
 from bs4 import BeautifulSoup
 from lxml import html
