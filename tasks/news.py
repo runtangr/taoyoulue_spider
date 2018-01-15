@@ -31,6 +31,6 @@ def save_new_content(article_id):
     crawler.info('The news content task is starting...')
     crawler.info('The news content article id is :{}'.format(article_id))
     res_div = parse_content(article_id)
-    crawler.info('The news content is :{}...'.format(res_div[:10]))
+    crawler.info('The news content is :{}...'.format(res_div[:20]))
 
     AuMessage724.objects(ArticleID=article_id).update(ArticleContent=res_div)

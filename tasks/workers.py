@@ -44,7 +44,7 @@ app.conf.update(
         Queue('news', exchange=Exchange('news', type='direct'),
               routing_key='for_news'),
 
-        Queue('silver_info', exchange=Exchange('silver_info', type='direct'),
+        Queue('info', exchange=Exchange('info', type='direct'),
               routing_key='for_info'),
         Queue('trade_info', exchange=Exchange('trade_info', type='direct'),
               routing_key='for_trade_info'),

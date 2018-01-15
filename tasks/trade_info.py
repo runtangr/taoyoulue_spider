@@ -33,6 +33,6 @@ def save_trade_info_content(information_id):
     crawler.info('The trade info content info id is :{}'.format(information_id))
     res_div = parse_content(information_id)
 
-    crawler.info('The trade info content is :{}...'.format(res_div[:10]))
+    crawler.info('The trade info content is :{}...'.format(res_div[:20]))
     ADxtInformation.objects(information_id=information_id).update(
         content=res_div)
