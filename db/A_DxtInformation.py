@@ -30,6 +30,10 @@ class ADxtInformation(Document):
     updatedAt = StringField()
     information_id = IntField(default=0)
 
+    isTop = BooleanField(default=False)
+    isHot = BooleanField(default=False)
+    isRecommend = BooleanField(default=False)
+
     meta = {
         'collection': 'A_DxtInformation',
         'indexes': ['information_id']
