@@ -47,7 +47,6 @@ livestatus.log
 venv
 .idea/
 celerybeat-schedule
-/page_parse/qiniu_deal.py
 .qiniu_pythonsdk_hostscache.json
 celerybeat-schedule.db
 /logs
