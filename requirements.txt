@@ -13,7 +13,6 @@ pytz==2017.3
 qiniu==7.2.0
 redis==2.10.6
 requests==2.18.4
-selenium==3.8.1
 six==1.11.0
 socketIO-client==0.7.2
 urllib3==1.22
