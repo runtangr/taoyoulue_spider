@@ -15,6 +15,7 @@
         python3+
         inrequirements.txt
     /db/init_database.py    配置测试数据库
+    /page_parse/qiniu_deal.py   环境变量配置七牛云的key和空间
     celery -A tasks.workers worker -B -Q new,info,trade_info -l info
 
 # 生产环境
