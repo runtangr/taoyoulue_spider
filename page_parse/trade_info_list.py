@@ -3,6 +3,7 @@ import time
 from .qiniu_deal import save2qiniu
 import os
 import re
+import datetime
 
 
 def parse_trade_info_list():
@@ -31,6 +32,10 @@ def parse_trade_info_list():
             a_information_field['isDisable'] = 0
 
             a_information_field['information_id'] = data['Id']
+
+            a_information_field['createdAt'] = datetime.datetime.now()
+            a_information_field['updatedAt'] = datetime.datetime.now()
+
             yield a_information_field
 
 
