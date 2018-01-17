@@ -6,8 +6,8 @@
     xpath
     celery
     requests
-    mongodb
-    redis
+    mongodb(orm)
+    redis(缓存)
     简要流程: 通过ajax 获取数据（id和其他），通过id 获取html， 解析html和ajax 获取的数据，redis缓存数据，mongodb存储数据
 # 测试环境
     install:
