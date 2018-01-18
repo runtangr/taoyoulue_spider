@@ -4,6 +4,7 @@ from .qiniu_deal import save2qiniu
 import os
 import re
 import datetime
+from utils.change import datetime2lc
 
 
 def parse_info_list():
@@ -23,7 +24,11 @@ def parse_info_list():
             a_information_field['tags'] = []
             a_information_field['teacher'] = {}
             a_information_field['nature'] = ''
-            a_information_field['publishTime'] = data['CreateTime']
+
+            lc_create_time = datetime2lc(datetime.datetime.strptime(
+                data['UpdateTime'], "%Y-%m-%d %H:%M:%S"))
+            a_information_field['publishTime'] = lc_create_time
+
             a_information_field['clickNumber'] = 0
             a_information_field['likeNumber'] = 0
             a_information_field['shareNumber'] = 0
@@ -33,8 +38,8 @@ def parse_info_list():
 
             a_information_field['information_id'] = data['Id']
 
-            a_information_field['createdAt'] = datetime.datetime.now()
-            a_information_field['updatedAt'] = datetime.datetime.now()
+            a_information_field['createdAt'] = datetime2lc(datetime.datetime.now())
+            a_information_field['updatedAt'] = datetime2lc(datetime.datetime.now())
             yield a_information_field
 
 
