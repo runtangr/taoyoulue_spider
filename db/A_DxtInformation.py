@@ -16,7 +16,7 @@ class ADxtInformation(Document):
     tags = ListField(default=[])
     teacher = DictField(default={})
     nature = StringField(default='')
-    publishTime = StringField(default='')
+    publishTime = DictField(default='')
     clickNumber = IntField(default=0)
     likeNumber = IntField(default=0)
     shareNumber = IntField(default=0)
@@ -26,8 +26,8 @@ class ADxtInformation(Document):
 
     pushTime = StringField(default='')
     isPushed = StringField(default='')
-    createdAt = StringField()
-    updatedAt = StringField()
+    createdAt = DictField()
+    updatedAt = DictField()
     information_id = IntField(default=0)
 
     isTop = BooleanField(default=False)

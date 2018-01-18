@@ -5,7 +5,7 @@ from .init_database import r_auMessage724
 
 
 class AuMessage724(Document):
-    LastHitTime = StringField()
+    LastHitTime = DictField()
     ArticleID = IntField()
     title = StringField()
     isArticle = IntField(default=0)
@@ -13,8 +13,8 @@ class AuMessage724(Document):
     source = StringField(default='')
     pushTime = StringField(default='')
     isPushed = StringField(default='')
-    createdAt = StringField()
-    updatedAt = StringField()
+    createdAt = DictField()
+    updatedAt = DictField()
 
     meta = {
         'collection': 'auMessage724',
