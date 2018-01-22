@@ -1,5 +1,5 @@
 from .workers import app
-from db.A_DxtInformation import ADxtInformation
+from db.B_DxtInformation import BDxtInformation
 from page_parse.info_list import parse_info_list
 from page_parse.content import parse_content
 from logger import crawler
@@ -19,7 +19,7 @@ def execute_info():
 @app.task(ignore_result=True)
 def save_info_list(a_information_field):
     crawler.info('The info list task is starting...')
-    ADxtInformation.add(a_information_field)
+    BDxtInformation.add(a_information_field)
 
     app.send_task('tasks.info.save_info_content',
                   args=(a_information_field['information_id'],),
@@ -35,4 +35,4 @@ def save_info_content(information_id):
 
     crawler.info('The info content is :{}...'.format(res_div[:20]))
 
-    ADxtInformation.objects(information_id=information_id).update(content=res_div)
+    BDxtInformation.objects(information_id=information_id).update(content=res_div)

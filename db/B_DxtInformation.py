@@ -4,7 +4,7 @@ from mongoengine import *
 from db.init_database import r_A_DxtInformation
 
 
-class ADxtInformation(Document):
+class BDxtInformation(Document):
 
     title = StringField()
     source = StringField(default='')
@@ -16,7 +16,7 @@ class ADxtInformation(Document):
     tags = ListField(default=[])
     teacher = DictField(default={})
     nature = StringField(default='')
-    publishTime = DictField(default='')
+    publishTime = DictField(default={})
     clickNumber = IntField(default=0)
     likeNumber = IntField(default=0)
     shareNumber = IntField(default=0)
@@ -26,8 +26,8 @@ class ADxtInformation(Document):
 
     pushTime = StringField(default='')
     isPushed = StringField(default='')
-    createdAt = DictField()
-    updatedAt = DictField()
+    createdAt = StringField()
+    updatedAt = StringField()
     information_id = IntField(default=0)
 
     isTop = BooleanField(default=False)
@@ -35,7 +35,7 @@ class ADxtInformation(Document):
     isRecommend = BooleanField(default=False)
 
     meta = {
-        'collection': 'A_DxtInformation',
+        'collection': 'B_DxtInformation',
         'indexes': ['information_id']
     }
 
