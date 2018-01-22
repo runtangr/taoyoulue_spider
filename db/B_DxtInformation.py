@@ -34,6 +34,8 @@ class BDxtInformation(Document):
     isHot = BooleanField(default=False)
     isRecommend = BooleanField(default=False)
 
+    status = IntField(default=1)
+
     meta = {
         'collection': 'B_DxtInformation',
         'indexes': ['information_id']
