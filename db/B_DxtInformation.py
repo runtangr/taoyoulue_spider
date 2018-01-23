@@ -35,6 +35,9 @@ class BDxtInformation(Document):
     isRecommend = BooleanField(default=False)
 
     status = IntField(default=1)
+    contentDealStatus = IntField(default=0)
+    CDNStatus = IntField(default=0)
+    categoriesType = StringField(default="金银资讯")
 
     meta = {
         'collection': 'B_DxtInformation',
