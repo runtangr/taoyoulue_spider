@@ -13,8 +13,8 @@ class AuMessage724(Document):
     source = StringField(default='')
     pushTime = StringField(default='')
     isPushed = StringField(default='')
-    createdAt = DictField()
-    updatedAt = DictField()
+    createdAt = StringField()
+    updatedAt = StringField()
 
     meta = {
         'collection': 'auMessage724',

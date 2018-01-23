@@ -21,9 +21,10 @@ def parse_news_list():
                 au_message724_field['isArticle'] = 1
             au_message724_field['title'] = data['title']
 
-            lc__time_now = datetime2lc(datetime.datetime.now())
-            au_message724_field['createdAt'] = lc__time_now
-            au_message724_field['updatedAt'] = lc__time_now
+            au_message724_field['createdAt'] = \
+                datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
+            au_message724_field['updatedAt'] = \
+                datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
 
             yield au_message724_field
 

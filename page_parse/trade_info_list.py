@@ -38,9 +38,9 @@ def parse_trade_info_list():
             a_information_field['information_id'] = data['Id']
 
             a_information_field['createdAt'] = \
-                datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + 'Z'
+                datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
             a_information_field['updatedAt'] = \
-                datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + 'Z'
+                datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
 
             yield a_information_field
 
