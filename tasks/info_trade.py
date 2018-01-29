@@ -6,7 +6,7 @@ from logger import crawler
 
 
 @app.task(ignore_result=True)
-def execute_trade_info():
+def execute_info_trade():
     crawler.info('The trade info task is starting...')
     for a_information_field in parse_info_trade_list():
 
