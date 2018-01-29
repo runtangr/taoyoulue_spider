@@ -1,4 +1,4 @@
-from page_get.trade_info import get_trade_info_list
+from page_get.info_trade import get_info_trade_list
 import time
 from .qiniu_deal import save2qiniu
 import os
@@ -7,8 +7,8 @@ import datetime
 from utils.change import datetime2lc
 
 
-def parse_trade_info_list():
-    res_dict = get_trade_info_list(1, 1)
+def parse_info_trade_list():
+    res_dict = get_info_trade_list(1, 1)
     time.sleep(10)
     if res_dict['Status'] == 200:
         a_information_field = dict()
@@ -55,4 +55,4 @@ def parse_img_url(image_url):
 
 
 if __name__ == "__main__":
-    parse_trade_info_list()
+    parse_info_trade_list()

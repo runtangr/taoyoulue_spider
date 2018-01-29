@@ -14,26 +14,28 @@
         virtualenv
         python3+
         inrequirements.txt
-    /db/init_database.py    配置测试数据库
-    /page_parse/qiniu_deal.py   环境变量配置七牛云的key和空间
-    /db/conf.py 配置celery redis
+    /db/init_database.py        配置测试数据库
+    /page_parse/qiniu_deal.py   配置七牛云的key和空间
+    /db/conf.py                 配置celery redis
     celery -A tasks.workers worker -B -Q new,info,trade_info -l info
 
 # 生产环境
-    编译Dockerfile,运行docker容器(需要配置七牛云的key和空间)
+    编译Dockerfile,运行docker容器(配置七牛云的key和空间)
 # 代码说明
-    /config     配置资讯和requests请求相关信息
+    /config     配置相关信息
 
     /db         初始化 redis、mongodb,定义mongodb 表结构和相关表操作方法
 
     /logger     配置存储日志和日志格式
 
-    /page_get   资讯 list 和content 获取(ajax)
-        news.py         7*24小时快讯
+    /page_get   数据获取
+        info_7x24.py    7*24小时快讯
         info.py         白银资讯
-        trade_info.py   行业白银资讯
-    /page_parse 资讯 list 和content 解析 和七牛储存图片(docker构建传入key和空间)
+        info_trade.py   行业白银资讯
+        info_content.py 白银资讯内容详情
 
-    /tasks      celery 配置，7*24小时快讯、白银资讯、行业白银资讯 task（主要传递数据和存储数据）
+    /page_parse 数据解析和七牛储存图片(docker构建传入key和空间)
+
+    /tasks      celery配置task,数据存储
 
     /tests      目前未加测试（数据的获取和解析 /page_get 和/page_parse 里面的文件可单独测试）

@@ -1,13 +1,13 @@
-from config.conf import MAX_SEARCH_PAGE_NUM, MAX_SEARCH_PAGE, DATE_LENGTH
-from page_get.news import get_news_list
+from config.conf import DATE_LENGTH
+from page_get.info_7x24 import get_info_7x24_list
 import datetime
 import time
 from utils.change import datetime2lc
 
 
-def parse_news_list():
+def parse_info_7x24_list():
 
-    res_dict = get_news_list(1, 1)
+    res_dict = get_info_7x24_list(1, 1)
     time.sleep(10)
     if res_dict['Status'] == 200:
         au_message724_field = dict()
@@ -32,5 +32,5 @@ def parse_news_list():
         raise ValueError
 
 if __name__ == "__main__":
-    for i in parse_news_list():
+    for i in parse_info_7x24_list():
         pass

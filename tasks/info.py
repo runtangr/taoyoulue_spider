@@ -1,7 +1,7 @@
 from .workers import app
 from db.B_DxtInformation import BDxtInformation
 from page_parse.info_list import parse_info_list
-from page_parse.content import parse_content
+from page_parse.info_content import parse_content
 from logger import crawler
 
 

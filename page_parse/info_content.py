@@ -1,5 +1,4 @@
-from page_get.news import get_news_content
-from config.conf import NEWS_CONTENT_URL
+from page_get.info_content import get_info_content
 from bs4 import BeautifulSoup
 from lxml import html
 import re
@@ -9,7 +8,7 @@ from page_parse.qiniu_deal import save2qiniu
 
 def parse_content(article_id):
 
-    res = get_news_content(article_id)
+    res = get_info_content(article_id)
     # collect div
     soup = BeautifulSoup(res.text, 'html.parser')
     res_div = soup.find('div', class_='detail-content')

@@ -11,16 +11,15 @@ PROXIES = {
         "https": "http://"+'111.2.122.46:8080',
 }
 
-# silver 7*24
+# information 7*24
 MAX_SEARCH_PAGE = 500
 MAX_SEARCH_PAGE_NUM = 5
-
-NEWS_LIST_URL = 'http://www.ebaiyin.com/Ajax/GetNewsFlashList'
-NEWS_CONTENT_URL = 'http://www.ebaiyin.com/news/{}.shtml'
+INFO_7X24_LIST_URL = 'http://www.ebaiyin.com/Ajax/GetNewsFlashList'
 DATE_LENGTH = 18
 
 # information
-INFORMATION_LIST_URL = 'http://www.ebaiyin.com/Ajax/GetInformationNewestList'
-TRADE_INFORMATION_LIST_URL = 'http://www.ebaiyin.com/Ajax/GetInformationByModuleList'
+INFO_LIST_URL = 'http://www.ebaiyin.com/Ajax/GetInformationNewestList'
+INFO_TRADE_LIST_URL = 'http://www.ebaiyin.com/Ajax/GetInformationByModuleList'
 
 
+INFO_CONTENT_URL = 'http://www.ebaiyin.com/news/{}.shtml'

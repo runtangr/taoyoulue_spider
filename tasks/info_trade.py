@@ -1,14 +1,14 @@
 from .workers import app
 from db.B_DxtInformation import BDxtInformation
-from page_parse.trade_info_list import parse_trade_info_list
-from page_parse.content import parse_content
+from page_parse.info_trade_list import parse_info_trade_list
+from page_parse.info_content import parse_content
 from logger import crawler
 
 
 @app.task(ignore_result=True)
 def execute_trade_info():
     crawler.info('The trade info task is starting...')
-    for a_information_field in parse_trade_info_list():
+    for a_information_field in parse_info_trade_list():
 
         app.send_task('tasks.trade_info.save_trade_info_list',
                       args=(a_information_field,),

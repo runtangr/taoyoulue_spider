@@ -10,12 +10,12 @@ from kombu import Exchange, Queue
 platforms.C_FORCE_ROOT = True
 
 tasks = [
- 'tasks.news',
+ 'tasks.info_7x24',
  'tasks.info',
- 'tasks.trade_info'
+ 'tasks.info_trade'
 ]
 
-app = Celery('ebaiyin_task', include=tasks, broker=BROKER, backend=BACKEND)
+app = Celery('taoyoulue_task', include=tasks, broker=BROKER, backend=BACKEND)
 
 
 app.conf.update(
@@ -23,31 +23,31 @@ app.conf.update(
     CELERY_ENABLE_UTC=True,
 
     CELERYBEAT_SCHEDULE={
-        'news_task': {
-            'task': 'tasks.news.execute_news',
+        'info_7x24_task': {
+            'task': 'tasks.info_7x24.execute_info_7x24',
             'schedule': timedelta(minutes=4),
-            'options': {'queue': 'news', 'routing_key': 'for_news'}
+            'options': {'queue': 'info_7x24', 'routing_key': 'for_info_7x24'}
         },
         'info_task': {
             'task': 'tasks.info.execute_info',
             'schedule': timedelta(minutes=3),
             'options': {'queue': 'info', 'routing_key': 'for_info'}
         },
-        'trade_info_task': {
-            'task': 'tasks.trade_info.execute_trade_info',
+        'info_trade_task': {
+            'task': 'tasks.info_trade.execute_info_trade',
             'schedule': timedelta(minutes=3),
-            'options': {'queue': 'trade_info', 'routing_key': 'for_trade_info'}
+            'options': {'queue': 'info_trade', 'routing_key': 'for_info_trade'}
         }
     },
 
     CELERY_QUEUES=(
-        Queue('news', exchange=Exchange('news', type='direct'),
-              routing_key='for_news'),
+        Queue('info_7x24', exchange=Exchange('info_7x24', type='direct'),
+              routing_key='for_info_7x24'),
 
         Queue('info', exchange=Exchange('info', type='direct'),
               routing_key='for_info'),
-        Queue('trade_info', exchange=Exchange('trade_info', type='direct'),
-              routing_key='for_trade_info'),
+        Queue('info_trade', exchange=Exchange('info_trade', type='direct'),
+              routing_key='for_info_trade'),
     )
 )
 
