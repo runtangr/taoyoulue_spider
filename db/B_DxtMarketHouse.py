@@ -20,6 +20,9 @@ class BDxtMarketHouse(Document):
     channelSource = StringField(default='')
     isDisable = IntField(default=0)
 
+    createdAt = StringField()
+    updatedAt = StringField()
+
     meta = {
         'collection': 'B_DxtMarketHouse',
         'indexes': ['timeStr']

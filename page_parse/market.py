@@ -15,6 +15,11 @@ def parse_market_list():
             continue
 
         db_data['type'] = int(data_list[0])
+        db_data['createdAt'] = \
+            datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
+        db_data['updatedAt'] = \
+            datetime.datetime.utcnow().isoformat()[:-3] + 'Z'
+
         if db_data['type'] == 0:
             db_data['star'] = int(data_list[1])
             db_data['pushTime'] = data_list[2]
