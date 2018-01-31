@@ -22,6 +22,7 @@ class BDxtMarketHouse(Document):
 
     createdAt = StringField()
     updatedAt = StringField()
+    status = IntField(default=1)
 
     meta = {
         'collection': 'B_DxtMarketHouse',
