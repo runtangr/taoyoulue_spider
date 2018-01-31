@@ -1,5 +1,5 @@
-BROKER = 'redis://localhost:6379/9'
-BACKEND = 'redis://localhost:6379/10'
+BROKER = 'redis://redis:6379/9'
+BACKEND = 'redis://redis:6379/10'
 
 HUA_TONG_URL = 'http://www.ebaiyin.com/Ajax/GetHuaTong'
 # header
