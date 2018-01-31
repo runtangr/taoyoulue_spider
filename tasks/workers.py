@@ -12,7 +12,8 @@ platforms.C_FORCE_ROOT = True
 tasks = [
  'tasks.info_7x24',
  'tasks.info',
- 'tasks.info_trade'
+ 'tasks.info_trade',
+ 'tasks.market'
 ]
 
 app = Celery('taoyoulue_task', include=tasks, broker=BROKER, backend=BACKEND)
@@ -37,7 +38,12 @@ app.conf.update(
             'task': 'tasks.info_trade.execute_info_trade',
             'schedule': timedelta(minutes=3),
             'options': {'queue': 'info_trade', 'routing_key': 'for_info_trade'}
-        }
+        },
+        'market_task': {
+            'task': 'tasks.market.execute_market',
+            'schedule': timedelta(seconds=10),
+            'options': {'queue': 'market', 'routing_key': 'for_market'}
+        },
     },
 
     CELERY_QUEUES=(
@@ -48,6 +54,8 @@ app.conf.update(
               routing_key='for_info'),
         Queue('info_trade', exchange=Exchange('info_trade', type='direct'),
               routing_key='for_info_trade'),
+        Queue('market', exchange=Exchange('market', type='direct'),
+              routing_key='for_market'),
     )
 )
 
