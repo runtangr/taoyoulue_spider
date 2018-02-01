@@ -31,7 +31,8 @@ def parse_market_list():
 
             db_data['img'] = data_list[6]
             if len(db_data['img']) != 0:
-                img = parse_img_url(db_data['img'])
+
+                img = parse_img_url(db_data['img'].split('_')[0] + '.png')
                 db_data['img'] = img
 
             db_data['timeStr'] = data_list[11]
