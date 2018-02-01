@@ -33,7 +33,7 @@
         info_7x24.py    7*24小时快讯
         info.py         白银资讯
         info_trade.py   行业白银资讯
-        info_content.py 白银资讯内容详情
+        info_content.py 资讯内容详情
         market          市场数据
 
     /page_parse 数据解析和七牛储存图片(docker构建传入key和空间)
