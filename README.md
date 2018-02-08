@@ -1,15 +1,14 @@
+# 主要功能:
+    1. 爬取中国白银网 7*24小时快讯、白银资讯、行业白银资讯，redis缓存数据，mongodb存储数据，图片存储七牛云。
+    2. 爬取金十数据网 市场数据，redis缓存数据，mongodb存储数据，图片存储七牛云。
 
-# 爬取功能
-    1. 中国白银网 7*24小时快讯、白银资讯、行业白银资讯
-    2. 金十数据网 市场数据
+# 主要特点
+    项目结构清晰, mongodb 采用orm, redis缓存数据, 可实现celery分布式。
+
 # 主要技术
-    bs4
-    xpath
-    celery
-    requests
-    mongodb(orm)
-    redis(缓存)
-    简要流程: 通过ajax 获取数据（id和其他），通过id 获取html， 解析html和ajax 获取的数据，redis缓存数据，mongodb存储数据
+    bs4,xpath,celery,requests,mongodb(orm),redis(缓存)
+    简要流程: 通过ajax 获取数据（id和其他），通过id 获取html，解析html和ajax 获取的数据，redis缓存数据，mongodb存储数据。
+    
 # 测试环境
     install:
         virtualenv
@@ -22,12 +21,13 @@
 
 # 生产环境
     编译Dockerfile,运行docker容器(配置七牛云的key和空间)
+    
 # 代码说明
     /config     配置相关信息
 
     /db         初始化 redis、mongodb,定义mongodb 表结构和相关表操作方法
 
-    /logger     配置存储日志和日志格式
+    /logger     配置存储日志
 
     /page_get   数据获取
         info_7x24.py    7*24小时快讯
